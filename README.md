@@ -13,10 +13,10 @@ An ancient language was recently uncovered which appears to be a close English l
 
 ## Examples (+ and - for emphasis only)
 
-English word | Prefix-Stem Identification | Ancient Text
-:----------- | :------------------------- | :-----------
-Stop         | St-op                      | Op+st+ay 
-No littering | N-o l-ittering             | O+n+ay ittering+l+ay
+English word | Prefix and Stem  | Ancient Text
+:----------- | :--------------- | :-----------
+Stop         | St-op            | Op+st+ay 
+No littering | N-o l-ittering   | O+n+ay ittering+l+ay
 No shirts, no shoes, no service | N-o sh-irts, n-o sh-oes, n-o s-ervice | O+n+ay irts+sh+ay, o+n+ay oes+sh+ay, o+n+ay ervice+s+ay
 No persons under 14 admitted | N-o p-ersons -under 14 -admitted| O+n+ay ersons+p+ay under+ay 14 admitted+ay
 Hey buddy, get away from my car! | H-ey b-uddy g-et -away fr-om m-y c-ar | Ey+h+ay uddy+b+ay et+g+ay way+a+ay om+fr+ay y+m+ay ar+c+ay
