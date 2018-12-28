@@ -22,6 +22,6 @@ No persons under 14 admitted     | Onay ersonspay underay 14 admitteday
 Hey buddy, get away from my car! | Eyhay uddybay, etgay awayay omfray ymay arcay!
 
 
-Pete Sattler  
-17 February 2014 
+Pete Sattler   
+17 February 2014  
 _peter@sattler22.net_  
