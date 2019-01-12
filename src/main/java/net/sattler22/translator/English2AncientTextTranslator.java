@@ -50,7 +50,7 @@ public final class English2AncientTextTranslator {
             //Reverse the order of the prefix and stem and add the default suffix to the end:
             else if (Character.isLetterOrDigit(sourceWord.charAt(0))) {
                 final WordComponentParser wordComponentParser = new WordComponentParser(sourceWord);
-                String stem = wordComponentParser.getStem();
+                final String stem = wordComponentParser.getStem();
                 if (wordComponentParser.isCapitalized()) {
                     ancientText.append(Character.toUpperCase(stem.charAt(0)));
                     ancientText.append(stem.substring(1).toLowerCase());
