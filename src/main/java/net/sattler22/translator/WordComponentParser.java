@@ -1,17 +1,18 @@
 package net.sattler22.translator;
 
-import java.io.Serializable;
 import java.util.Objects;
+
+import net.jcip.annotations.Immutable;
 
 /**
  * Parses a word into its prefix and stem
- * 
+ *
  * @author Pete Sattler
  * @version 17 February 2014
  */
-public final class WordComponentParser implements Serializable {
+@Immutable
+final class WordComponentParser {
 
-    private static final long serialVersionUID = -6834722824698841124L;
     private final String word;
     private final String prefix;
     private final String stem;
@@ -20,18 +21,18 @@ public final class WordComponentParser implements Serializable {
     /**
      * Constructs a new word component parser
      */
-    public WordComponentParser(String word) {
+    WordComponentParser(String word) {
         this.word = Objects.requireNonNull(word, "Word is required");
         boolean isPrefix = true;
-        StringBuilder prefixBuilder = new StringBuilder();
-        StringBuilder stemBuilder = new StringBuilder();
-        for (char c : word.toCharArray()) {
-            if (isPrefix && WordUtils.isVowel(c))
+        final var prefixBuilder = new StringBuilder();
+        final var stemBuilder = new StringBuilder();
+        for (final var character : word.toCharArray()) {
+            if (isPrefix && WordUtils.isVowel(character))
                 isPrefix = false;
             if (isPrefix)
-                prefixBuilder.append(c);
+                prefixBuilder.append(character);
             else
-                stemBuilder.append(c);
+                stemBuilder.append(character);
         }
         this.prefix = prefixBuilder.toString();
         this.stem = stemBuilder.toString();
@@ -40,28 +41,28 @@ public final class WordComponentParser implements Serializable {
 
     /**
      * Get the prefix
-     * 
+     *
      * @return The prefix which extends from the beginning of the word up to, but not including, the first vowel
      */
-    public String getPrefix() {
+    String prefix() {
         return prefix;
     }
 
     /**
      * Get the stem
-     * 
+     *
      * @return The stem which is the rest of the word (no prefix)
      */
-    public String getStem() {
+    String stem() {
         return stem;
     }
 
     /**
      * Capitalization check
-     * 
+     *
      * @return True if the first letter is upper case. Otherwise, returns false.
      */
-    public boolean isCapitalized() {
+    boolean isCapitalized() {
         return capitalized;
     }
 
@@ -78,7 +79,7 @@ public final class WordComponentParser implements Serializable {
             return false;
         if (this.getClass() != other.getClass())
             return false;
-        final WordComponentParser that = (WordComponentParser) other;
+        final var that = (WordComponentParser) other;
         return Objects.equals(this.word, that.word);
     }
 

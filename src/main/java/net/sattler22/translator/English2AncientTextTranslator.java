@@ -1,5 +1,7 @@
 package net.sattler22.translator;
 
+import static java.text.BreakIterator.DONE;
+
 import java.text.BreakIterator;
 import java.util.Locale;
 import java.util.Objects;
@@ -7,15 +9,18 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.jcip.annotations.Immutable;
+
 /**
  * Translates a single sentence or phrase from English to Ancient text preserving both whitespace and punctuation
- * 
+ *
  * @author Pete Sattler
  * @version 17 February 2014
  */
+@Immutable
 public final class English2AncientTextTranslator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(English2AncientTextTranslator.class);
+    private static final Logger logger = LoggerFactory.getLogger(English2AncientTextTranslator.class);
     private static final String ANCIENT_TEXT_DEFAULT_SUFFIX = "ay";
     private static final String ANCIENT_TEXT_CONSONANTS_SUFFIX = "yay";
     private final String sourceText;
@@ -34,14 +39,12 @@ public final class English2AncientTextTranslator {
      * Translate the English text into Ancient text
      */
     public String translate() {
-        final StringBuilder ancientText = new StringBuilder();
-        LOGGER.info("Begin translation of [{}]", sourceText);
-        for (int startIndex = wordIterator.first(), endIndex = wordIterator.next(); endIndex != BreakIterator.DONE; startIndex = endIndex, endIndex = wordIterator.next()) {
-            final String sourceWord = sourceText.substring(startIndex, endIndex);
+        final var ancientText = new StringBuilder();
+        for (int start = wordIterator.first(), end = wordIterator.next(); end != DONE; start = end, end = wordIterator.next()) {
+            final var sourceWord = sourceText.substring(start, end);
             //Do not translate a word with no letters:
-            if (!WordUtils.hasLetters(sourceWord)) {
+            if (!WordUtils.hasLetters(sourceWord))
                 ancientText.append(sourceWord);
-            }
             //Word with consonants only get a special suffix:
             else if (WordUtils.hasOnlyConsonants(sourceWord)) {
                 ancientText.append(sourceWord);
@@ -49,24 +52,22 @@ public final class English2AncientTextTranslator {
             }
             //Reverse the order of the prefix and stem and add the default suffix to the end:
             else if (Character.isLetterOrDigit(sourceWord.charAt(0))) {
-                final WordComponentParser wordComponentParser = new WordComponentParser(sourceWord);
-                final String stem = wordComponentParser.getStem();
+                final var wordComponentParser = new WordComponentParser(sourceWord);
+                final var stem = wordComponentParser.stem();
                 if (wordComponentParser.isCapitalized()) {
                     ancientText.append(Character.toUpperCase(stem.charAt(0)));
                     ancientText.append(stem.substring(1).toLowerCase());
-                }
-                else {
+                } 
+                else
                     ancientText.append(stem.toLowerCase());
-                }
-                ancientText.append(wordComponentParser.getPrefix().toLowerCase());
+                ancientText.append(wordComponentParser.prefix().toLowerCase());
                 ancientText.append(ANCIENT_TEXT_DEFAULT_SUFFIX);
             }
             //Preserve whitespace and punctuation:
-            else {
+            else
                 ancientText.append(sourceWord);
-            }
         }
-        LOGGER.info("Translated [{}] to [{}]", sourceText, ancientText);
+        logger.info("Translated [{}] to [{}]", sourceText, ancientText);
         return ancientText.toString();
     }
 
