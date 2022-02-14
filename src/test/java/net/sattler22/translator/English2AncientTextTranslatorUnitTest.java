@@ -42,7 +42,7 @@ final class English2AncientTextTranslatorUnitTest {
         checkAssertionsImpl("bcd is misspelled!!!", "bcdyay isay isspelledmay!!!");
     }
 
-    private void checkAssertionsImpl(String source, String expected) {
+    private static void checkAssertionsImpl(String source, String expected) {
         final var translator = new English2AncientTextTranslator(source);
         final var actual = translator.translate();
         assertEquals(expected, actual);
