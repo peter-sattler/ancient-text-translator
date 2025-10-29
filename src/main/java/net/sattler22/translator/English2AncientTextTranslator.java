@@ -1,15 +1,12 @@
 package net.sattler22.translator;
 
-import static java.text.BreakIterator.DONE;
+import net.jcip.annotations.Immutable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.BreakIterator;
 import java.util.Locale;
 import java.util.Objects;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import net.jcip.annotations.Immutable;
 
 /**
  * Translates a single sentence or phrase from English to Ancient text preserving both whitespace and punctuation
@@ -40,7 +37,7 @@ public final class English2AncientTextTranslator {
      */
     public String translate() {
         final var ancientText = new StringBuilder();
-        for (int start = wordIterator.first(), end = wordIterator.next(); end != DONE; start = end, end = wordIterator.next()) {
+        for (int start = wordIterator.first(), end = wordIterator.next(); end != BreakIterator.DONE; start = end, end = wordIterator.next()) {
             final var sourceWord = sourceText.substring(start, end);
             //Do not translate a word with no letters:
             if (!WordUtils.hasLetters(sourceWord))

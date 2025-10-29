@@ -1,8 +1,8 @@
 package net.sattler22.translator;
 
-import java.util.Objects;
-
 import net.jcip.annotations.Immutable;
+
+import java.util.Objects;
 
 /**
  * Parses a word into its prefix and stem

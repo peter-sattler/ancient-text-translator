@@ -1,15 +1,20 @@
 # English to Ancient Text Language Translator
 
-An ancient language was recently uncovered which appears to be a close English language derivative. A group of researchers requires a program to translate English into this ancient text. 
+An ancient language was recently uncovered which appears to be a close English language derivative. A group of researchers 
+requires a program to translate English into this ancient text. 
 
 ## Translation Rules
 
 1. If a word has no letters, don't translate it.
 2. All punctuation should be preserved.
 3. If a word begins with a capital letter, then the translated word should too.
-4. Separate each word into two parts. The first part is called the _"prefix"_ and extends from the beginning of the word up to, but not including, the first vowel. (The letter _"y"_ will be considered a vowel.) The rest of the word is called the _"stem"_.
-5. The translated text is formed by reversing the order of the prefix and stem and adding the letters _"ay"_ to the end. For example, _"sandwich"_ is composed of _"s"_ (the prefix) + _"andwich"_ (the stem) + _"ay"_ and would translate to _"andwichsay"_.
-6. If a word contains no consonants, let the prefix be empty and the word be the stem. The word ending should be _"yay"_ instead of merely _"ay"_. For example, _"l"_ would be _"lyay"_.
+4. Separate each word into two parts. The first part is called the _"prefix"_ and extends from the beginning of the word up 
+to, but not including, the first vowel. (The letter _"y"_ will be considered a vowel.) The rest of the word is called 
+the _"stem"_. The translated text is formed by reversing the order of the prefix and stem and adding the letters _"ay"_ to 
+the end. For example, _"sandwich"_ is composed of _"s"_ (the prefix) + _"andwich"_ (the stem) + _"ay"_ and would translate 
+to _"andwichsay"_.
+6. If a word contains no consonants, let the prefix be empty and the word be the stem. The word ending should be _"yay"_ 
+instead of merely _"ay"_. For example, _"l"_ would be _"lyay"_.
 
 ## Examples
 

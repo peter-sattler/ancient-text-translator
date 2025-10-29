@@ -1,16 +1,16 @@
 package net.sattler22.translator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
- * English to Ancient Text Language Translator Unit Test Harness
+ * English to Ancient Text Language Translator Unit Tests
  *
  * @author Pete Sattler
  * @version 17 February 2014
  */
-final class English2AncientTextTranslatorUnitTest {
+final class English2AncientTextTranslatorTest {
 
     @Test
     void stopTestCase() {
