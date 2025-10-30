@@ -36,9 +36,9 @@ public final class English2AncientTextTranslator {
      * Translate the English text into Ancient text
      */
     public String translate() {
-        final var ancientText = new StringBuilder();
+        final StringBuilder ancientText = new StringBuilder();
         for (int start = wordIterator.first(), end = wordIterator.next(); end != BreakIterator.DONE; start = end, end = wordIterator.next()) {
-            final var sourceWord = sourceText.substring(start, end);
+            final String sourceWord = sourceText.substring(start, end);
             //Do not translate a word with no letters:
             if (!WordUtils.hasLetters(sourceWord))
                 ancientText.append(sourceWord);
@@ -49,8 +49,8 @@ public final class English2AncientTextTranslator {
             }
             //Reverse the order of the prefix and stem and add the default suffix to the end:
             else if (Character.isLetterOrDigit(sourceWord.charAt(0))) {
-                final var wordComponentParser = new WordComponentParser(sourceWord);
-                final var stem = wordComponentParser.stem();
+                final WordComponentParser wordComponentParser = new WordComponentParser(sourceWord);
+                final String stem = wordComponentParser.stem();
                 if (wordComponentParser.isCapitalized()) {
                     ancientText.append(Character.toUpperCase(stem.charAt(0)));
                     ancientText.append(stem.substring(1).toLowerCase());

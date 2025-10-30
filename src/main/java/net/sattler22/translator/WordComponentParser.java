@@ -24,9 +24,9 @@ final class WordComponentParser {
     WordComponentParser(String word) {
         this.word = Objects.requireNonNull(word, "Word is required");
         boolean isPrefix = true;
-        final var prefixBuilder = new StringBuilder();
-        final var stemBuilder = new StringBuilder();
-        for (final var character : word.toCharArray()) {
+        final StringBuilder prefixBuilder = new StringBuilder();
+        final StringBuilder stemBuilder = new StringBuilder();
+        for (final char character : word.toCharArray()) {
             if (isPrefix && WordUtils.isVowel(character))
                 isPrefix = false;
             if (isPrefix)
@@ -79,7 +79,7 @@ final class WordComponentParser {
             return false;
         if (this.getClass() != other.getClass())
             return false;
-        final var that = (WordComponentParser) other;
+        final WordComponentParser that = (WordComponentParser) other;
         return Objects.equals(this.word, that.word);
     }
 

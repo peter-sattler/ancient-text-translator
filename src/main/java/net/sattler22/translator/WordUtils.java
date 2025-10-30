@@ -20,7 +20,7 @@ final class WordUtils {
      * @param word The word to check
      */
     static boolean hasLetters(String word) {
-        for (final var character : word.toCharArray())
+        for (final char character : word.toCharArray())
             if (Character.isLetter(character))
                 return true;
         return false;
@@ -32,7 +32,7 @@ final class WordUtils {
      * @param word The word to check
      */
     static boolean hasOnlyConsonants(String word) {
-        for (final var character : word.toLowerCase().toCharArray())
+        for (final char character : word.toLowerCase().toCharArray())
             for (final char vowel : VOWELS_LOWER_CASE)
                 if (character == vowel)
                     return false;
@@ -45,7 +45,7 @@ final class WordUtils {
      * @param character The character to check
      */
     static boolean isVowel(char character) {
-        for (final var vowel : VOWELS_LOWER_CASE)
+        for (final char vowel : VOWELS_LOWER_CASE)
             if (character == vowel)
                 return true;
         return false;

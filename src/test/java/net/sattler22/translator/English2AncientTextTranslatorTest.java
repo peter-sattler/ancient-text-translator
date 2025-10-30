@@ -43,8 +43,8 @@ final class English2AncientTextTranslatorTest {
     }
 
     private static void checkAssertionsImpl(String source, String expected) {
-        final var translator = new English2AncientTextTranslator(source);
-        final var actual = translator.translate();
+        final English2AncientTextTranslator translator = new English2AncientTextTranslator(source);
+        final String actual = translator.translate();
         assertEquals(expected, actual);
     }
 }

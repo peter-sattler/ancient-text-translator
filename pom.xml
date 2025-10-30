@@ -3,7 +3,7 @@
     <artifactId>ancient-text-translator</artifactId>
     <groupId>net.sattler22.translator</groupId>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>24</maven.compiler.source>
