@@ -32,12 +32,12 @@ final class WordUtils {
      * Consonants only existence check
      *
      * @param word The word to check
-     * @return True if thw word contains only constants (no vowels, digits or symbols). Otherwise, returns false.
+     * @return True if the word contains only constants. Otherwise, returns false.
      */
     static boolean containsOnlyConsonants(String word) {
         for (final char character : word.toLowerCase().toCharArray()) {
             for (final char vowel : VOWELS_LOWER_CASE) {
-                if (!Character.isLetter(vowel))
+                if (!Character.isLetter(character))
                     return false;
                 if (character == vowel)
                     return false;
@@ -50,7 +50,7 @@ final class WordUtils {
      * Vowel existence check
      *
      * @param word The word to check
-     * @return True if thw word contains at least one vowel. Otherwise, returns false.
+     * @return True if the word contains at least one vowel. Otherwise, returns false.
      */
     static boolean containsVowel(String word) {
         for (final char character : word.toCharArray()) {

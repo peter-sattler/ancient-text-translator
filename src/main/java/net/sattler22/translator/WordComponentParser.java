@@ -25,7 +25,7 @@ final class WordComponentParser {
      * @param word The word to parse
      */
     WordComponentParser(String word) {
-        if (word == null || word.isBlank())
+        if (word == null || word.isEmpty())
             throw new IllegalArgumentException("Word is required");
         if (!WordUtils.containsVowel(word))
             throw new IllegalArgumentException("Word must contain at least one vowel");

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.BreakIterator;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * English to Ancient text language translator
@@ -30,16 +31,16 @@ public final class English2AncientTextTranslator {
      * Translate the English text into Ancient text
      */
     public static String translate(String sourceText) {
-        if (sourceText == null || sourceText.isBlank())
-            throw new IllegalArgumentException("Source text is required");
+        Objects.requireNonNull(sourceText, "Source text is required");
         final BreakIterator wordIterator = BreakIterator.getWordInstance(Locale.US);
         wordIterator.setText(sourceText);
         final StringBuilder ancientText = new StringBuilder();
         for (int start = wordIterator.first(), end = wordIterator.next(); end != BreakIterator.DONE; start = end, end = wordIterator.next()) {
             final String sourceWord = sourceText.substring(start, end);
             //Do not translate a word with no letters:
-            if (!WordUtils.hasLetters(sourceWord))
+            if (!WordUtils.hasLetters(sourceWord)) {
                 ancientText.append(sourceWord);
+            }
             //Word with consonants only get a special suffix:
             else if (WordUtils.containsOnlyConsonants(sourceWord)) {
                 ancientText.append(sourceWord);
@@ -53,14 +54,16 @@ public final class English2AncientTextTranslator {
                     ancientText.append(Character.toUpperCase(stem.charAt(0)));
                     ancientText.append(stem.substring(1).toLowerCase());
                 } 
-                else
+                else {
                     ancientText.append(stem.toLowerCase());
+                }
                 ancientText.append(wordComponentParser.prefix().toLowerCase());
                 ancientText.append(ANCIENT_TEXT_DEFAULT_SUFFIX);
             }
             //Preserve whitespace and punctuation:
-            else
+            else {
                 ancientText.append(sourceWord);
+            }
         }
         logger.info("Translated [{}] to [{}]", sourceText, ancientText);
         return ancientText.toString();
