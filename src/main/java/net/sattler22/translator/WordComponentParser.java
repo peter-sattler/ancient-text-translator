@@ -8,7 +8,8 @@ import java.util.Objects;
  * Parses a word into its prefix and stem
  *
  * @author Pete Sattler
- * @version 17 February 2014
+ * @since 17 February 2014
+ * @version May 2026
  */
 @Immutable
 final class WordComponentParser {
@@ -20,9 +21,15 @@ final class WordComponentParser {
 
     /**
      * Constructs a new word component parser
+     *
+     * @param word The word to parse
      */
     WordComponentParser(String word) {
-        this.word = Objects.requireNonNull(word, "Word is required");
+        if (word == null || word.isBlank())
+            throw new IllegalArgumentException("Word is required");
+        if (!WordUtils.containsVowel(word))
+            throw new IllegalArgumentException("Word must contain at least one vowel");
+        this.word = word;
         boolean isPrefix = true;
         final StringBuilder prefixBuilder = new StringBuilder();
         final StringBuilder stemBuilder = new StringBuilder();
@@ -75,16 +82,13 @@ final class WordComponentParser {
     public boolean equals(Object other) {
         if (this == other)
             return true;
-        if (other == null)
+        if (!(other instanceof WordComponentParser that))
             return false;
-        if (this.getClass() != other.getClass())
-            return false;
-        final WordComponentParser that = (WordComponentParser) other;
         return Objects.equals(this.word, that.word);
     }
 
     @Override
     public String toString() {
-        return String.format("%s [word=%s, prefix=%s, stem=%s, capitalized=%s]", getClass().getSimpleName(), word, prefix, stem, capitalized);
+        return "%s [word=%s, prefix=%s, stem=%s, capitalized=%s]".formatted(getClass().getSimpleName(), word, prefix, stem, capitalized);
     }
 }

@@ -8,43 +8,43 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * English to Ancient Text Language Translator Unit Tests
  *
  * @author Pete Sattler
- * @version 17 February 2014
+ * @since 17 February 2014
+ * @version May 2026
  */
 final class English2AncientTextTranslatorTest {
 
     @Test
-    void stopTestCase() {
-        checkAssertionsImpl("Stop", "Opstay");
+    void translate_whenSingleWord_thenSuccessful() {
+        checkAssertions("Stop", "Opstay");
     }
 
     @Test
-    void noLitteringTestCase() {
-        checkAssertionsImpl("No littering", "Onay itteringlay");
+    void translate_whenCleanlinessRequirement_thenSuccessful() {
+        checkAssertions("No littering", "Onay itteringlay");
     }
 
     @Test
-    void noShirtsShoesServiceTestCase() {
-        checkAssertionsImpl("No shirts, no shoes, no service", "Onay irtsshay, onay oesshay, onay ervicesay");
+    void translate_whenClothingMandatory_thenSuccessful() {
+        checkAssertions("No shirts, no shoes, no service", "Onay irtsshay, onay oesshay, onay ervicesay");
     }
 
     @Test
-    void noPersonsUnder14AdmittedTestCase() {
-        checkAssertionsImpl("No persons under 14 admitted", "Onay ersonspay underay 14 admitteday");
+    void translate_whenAgeVerified_thenSuccessful() {
+        checkAssertions("No persons under 14 admitted", "Onay ersonspay underay 14 admitteday");
     }
 
     @Test
-    void heyBuddyGetAwayFromMyCarTestCase() {
-        checkAssertionsImpl("Hey buddy, get away from my car!", "Eyhay uddybay, etgay awayay omfray ymay arcay!");
+    void translate_whenStayAwayBuddy_thenSuccessful() {
+        checkAssertions("Hey buddy, get away from my car!", "Eyhay uddybay, etgay awayay omfray ymay arcay!");
     }
 
     @Test
-    void consonantsOnlyTestCase() {
-        checkAssertionsImpl("bcd is misspelled!!!", "bcdyay isay isspelledmay!!!");
+    void translate_whenConsonantsOnly_thenSuccessful() {
+        checkAssertions("bcd is misspelled!!!", "bcdyay isay isspelledmay!!!");
     }
 
-    private static void checkAssertionsImpl(String source, String expected) {
-        final English2AncientTextTranslator translator = new English2AncientTextTranslator(source);
-        final String actual = translator.translate();
+    private static void checkAssertions(String sourceText, String expected) {
+        final String actual = English2AncientTextTranslator.translate(sourceText);
         assertEquals(expected, actual);
     }
 }

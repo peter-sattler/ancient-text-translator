@@ -1,41 +1,39 @@
 package net.sattler22.translator;
 
-import net.jcip.annotations.Immutable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.BreakIterator;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
+ * English to Ancient text language translator
+ * <p>
  * Translates a single sentence or phrase from English to Ancient text preserving both whitespace and punctuation
+ * </p>
  *
  * @author Pete Sattler
- * @version 17 February 2014
+ * @since 17 February 2014
+ * @version May 2026
  */
-@Immutable
 public final class English2AncientTextTranslator {
 
     private static final Logger logger = LoggerFactory.getLogger(English2AncientTextTranslator.class);
     private static final String ANCIENT_TEXT_DEFAULT_SUFFIX = "ay";
     private static final String ANCIENT_TEXT_CONSONANTS_SUFFIX = "yay";
-    private final String sourceText;
-    private final BreakIterator wordIterator;
 
-    /**
-     * Constructs a new English to Ancient text language translator
-     */
-    public English2AncientTextTranslator(String sourceText) {
-        this.sourceText = Objects.requireNonNull(sourceText, "Source text is required");
-        this.wordIterator = BreakIterator.getWordInstance(Locale.US);
-        this.wordIterator.setText(sourceText);
+    private English2AncientTextTranslator() {
+        throw new AssertionError("Class cannot be instantiated");
     }
 
     /**
      * Translate the English text into Ancient text
      */
-    public String translate() {
+    public static String translate(String sourceText) {
+        if (sourceText == null || sourceText.isBlank())
+            throw new IllegalArgumentException("Source text is required");
+        final BreakIterator wordIterator = BreakIterator.getWordInstance(Locale.US);
+        wordIterator.setText(sourceText);
         final StringBuilder ancientText = new StringBuilder();
         for (int start = wordIterator.first(), end = wordIterator.next(); end != BreakIterator.DONE; start = end, end = wordIterator.next()) {
             final String sourceWord = sourceText.substring(start, end);
@@ -43,7 +41,7 @@ public final class English2AncientTextTranslator {
             if (!WordUtils.hasLetters(sourceWord))
                 ancientText.append(sourceWord);
             //Word with consonants only get a special suffix:
-            else if (WordUtils.hasOnlyConsonants(sourceWord)) {
+            else if (WordUtils.containsOnlyConsonants(sourceWord)) {
                 ancientText.append(sourceWord);
                 ancientText.append(ANCIENT_TEXT_CONSONANTS_SUFFIX);
             }
@@ -66,10 +64,5 @@ public final class English2AncientTextTranslator {
         }
         logger.info("Translated [{}] to [{}]", sourceText, ancientText);
         return ancientText.toString();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s [sourceText=%s, wordIterator=%s]", getClass().getSimpleName(), sourceText, wordIterator);
     }
 }
