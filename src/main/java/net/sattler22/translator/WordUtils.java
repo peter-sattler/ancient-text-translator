@@ -22,9 +22,10 @@ final class WordUtils {
      * @return True if the word contains letters (no digits or symbols). Otherwise, returns false.
      */
     static boolean hasLetters(String word) {
-        for (final char character : word.toCharArray())
+        for (final char character : word.toCharArray()) {
             if (Character.isLetter(character))
                 return true;
+        }
         return false;
     }
 
