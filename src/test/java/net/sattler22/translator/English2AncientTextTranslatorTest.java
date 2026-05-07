@@ -15,35 +15,35 @@ final class English2AncientTextTranslatorTest {
 
     @Test
     void translate_whenSingleWord_thenSuccessful() {
-        checkAssertions("Stop", "Opstay");
+        checkTranslation("Stop", "Opstay");
     }
 
     @Test
     void translate_whenCleanlinessRequirement_thenSuccessful() {
-        checkAssertions("No littering", "Onay itteringlay");
+        checkTranslation("No littering", "Onay itteringlay");
     }
 
     @Test
     void translate_whenClothingMandatory_thenSuccessful() {
-        checkAssertions("No shirts, no shoes, no service", "Onay irtsshay, onay oesshay, onay ervicesay");
+        checkTranslation("No shirts, no shoes, no service", "Onay irtsshay, onay oesshay, onay ervicesay");
     }
 
     @Test
     void translate_whenAgeVerified_thenSuccessful() {
-        checkAssertions("No persons under 14 admitted", "Onay ersonspay underay 14 admitteday");
+        checkTranslation("No persons under 14 admitted", "Onay ersonspay underay 14 admitteday");
     }
 
     @Test
     void translate_whenStayAwayBuddy_thenSuccessful() {
-        checkAssertions("Hey buddy, get away from my car!", "Eyhay uddybay, etgay awayay omfray ymay arcay!");
+        checkTranslation("Hey buddy, get away from my car!", "Eyhay uddybay, etgay awayay omfray ymay arcay!");
     }
 
     @Test
     void translate_whenConsonantsOnly_thenSuccessful() {
-        checkAssertions("bcd is misspelled!!!", "bcdyay isay isspelledmay!!!");
+        checkTranslation("bcd is misspelled!!!", "bcdyay isay isspelledmay!!!");
     }
 
-    private static void checkAssertions(String sourceText, String expected) {
+    private static void checkTranslation(String sourceText, String expected) {
         final String actual = English2AncientTextTranslator.translate(sourceText);
         assertEquals(expected, actual);
     }
